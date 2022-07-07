@@ -77,8 +77,46 @@ namespace class4
             return resust;
         }
 
-       
+        //ハンズオン04
+        //string[] argsの中身を検知してバースを試みる
+        //バースに失敗した場合、ハンズオン02の関数を呼ぶ
+        public static double ParseArgsAndWaitInputIfParseFailed(string[] arguments,int argumetIndex,string askText)
+        {
+            double result = 0;
+            bool weightOptionIsValid = false;
+            if (arguments.Length > argumetIndex)
+            {
+                string arg = arguments[argumetIndex];
+                weightOptionIsValid = double.TryParse(arg, out result);
+            }
+            if (!weightOptionIsValid)
+            {
+                Console.WriteLine(askText);
+                result = WaitInputAndParseToDouble();
+            }
+            return result;
+        }
+       //ハンズオン05の関数
+       //ノーマル
+       public static void NormalSample(int value)
+        {
+            value += 1;
+        }
 
-        
+        public static void RefSample(ref int value)
+        {
+            value += 1;
+        }
+
+        //ハンズオン06
+        public static (double,double,double) GetvectorMagnitudeAndNormalized
+            (double x, double y)
+        {
+            //ルートをとる
+            double magnitude= Math.Sqrt(x*x+y*y);
+
+            //正規化ベクトル
+            return(magnitude,x/magnitude,y/magnitude);
+        }
     }
 }
